@@ -42,7 +42,8 @@ int main () {
     cout << "*** 30th Mersenne prime: 39,751 digits ***" << endl << endl;
 
     {
-    const Integer<int> n = Integer<int>(2).pow(132049) - 1;
+    //const Integer<int> n = Integer<int>(2).pow(132049) - 1;
+    int n = 0;
     cout << "2^132049 - 1 = " << n << endl << endl;
     }
 
