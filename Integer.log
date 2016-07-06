@@ -1,0 +1,35 @@
+commit 50e32e87839f7a61c1e77b5c0cc1bec00396aa20
+Author: asnguyen <asnguyen@users.noreply.github.com>
+Date:   Tue Jul 5 23:04:12 2016 -0500
+
+    edited .travis.yml
+
+commit 2208f8777fe5bee20c619fc40b2ed3cf94540ffc
+Author: Anthony Nguyen <anthony@cs.utexas.edu>
+Date:   Tue Jul 5 22:51:53 2016 -0500
+
+    added comments and feature tag
+
+commit 6a6d51f4566acbec545994fa1314cf711c69b578
+Author: Anthony Nguyen <anthony@cs.utexas.edu>
+Date:   Tue Jul 5 22:05:03 2016 -0500
+
+    wrote Integer.h
+
+commit 87c70c80633b1b698cce3d1a00f378cb13ecea6a
+Author: Nguyen <asn579@wireless-10-145-135-33.public.utexas.edu>
+Date:   Thu Jun 30 08:27:24 2016 -0500
+
+    copied from gpdowning/cs371g repo
+
+commit f7bde0cbb13103952071ac245afe3ae201df919d
+Author: asnguyen <asnguyen@users.noreply.github.com>
+Date:   Thu Jun 30 08:20:52 2016 -0500
+
+    Update .gitignore
+
+commit e1fd71487d26a949b70d6da23e5e3ce92a576df2
+Author: asnguyen <asnguyen@users.noreply.github.com>
+Date:   Thu Jun 30 08:20:31 2016 -0500
+
+    Initial commit
