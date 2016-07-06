@@ -21,6 +21,7 @@
 
 using namespace std;
 
+#define optimize 1
 // -----------------
 // shift_left_digits
 // -----------------
@@ -337,6 +338,7 @@ class Integer {
 
     /**
      * <your documentation>
+     uses the == method and returns the opposite boolean value
      */
     friend bool operator != (const Integer& lhs, const Integer& rhs) {
         return !(lhs == rhs);}
@@ -347,6 +349,10 @@ class Integer {
 
     /**
      * <your documentation>
+     figures out is lhs is less than rhs regardless of leading zeros
+     it first checks the lenght of each Integer. If they are the same
+     the method will iterate through each Integer simotaneously and figure
+     out which is larger
      */
     friend bool operator < (const Integer& lhs, const Integer& rhs) {
        ostringstream sleft;
@@ -478,7 +484,11 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * this method allows for printing out of an integer.
+     this method ignores leading zeroes and checks to see 
+     if the number should be negative or not. there are only
+     zeroes, the integer is actually the number zero and it
+     prints that instead
      */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
         bool leading_zero =true;
@@ -557,10 +567,12 @@ class Integer {
                 _x.push_back(i);
                 ++a;
             }
-            //ssert(valid());
+            //assert((*this).valid());
         }
         /**
          * <your documentation>
+         this constructor will convert the value into a string use the same 
+         method that Integer(string) uses to create the Integer
          */
         Integer (int value) {
             // <your code>
@@ -578,11 +590,13 @@ class Integer {
                 }
                 ++a;
             }
-            //assert(valid());
+            //assert((*this).valid());
         }
 
         /**
          * <your documentation>
+        fills the container by iteratoring through the string and push_backing
+        the values of the string into the container
          * @throws invalid_argument if value is not a valid representation of an Integer
          */
         explicit Integer (const std::string& value) {
@@ -599,6 +613,7 @@ class Integer {
                 }
                 ++a;
             }
+            //assert((*this).valid());
             }
 
                  Integer    (const Integer&) = default;
@@ -611,6 +626,9 @@ class Integer {
 
         /**
          * <your documentation>
+         this method will return the negative of what is its given
+         if the Integer was postive it will return a negative and if 
+         the Integer was negative it will return a positive
          */
         Integer operator - () const {
             ostringstream w;
@@ -669,6 +687,7 @@ class Integer {
 
         /**
          * <your documentation>
+         this method uses the plus_digit function
          */
         Integer& operator += (const Integer& rhs) {
             Integer<T,C> output("0");
@@ -688,6 +707,7 @@ class Integer {
 
         /**
          * <your documentation>
+         this method use the minus_digit function
          */
         Integer& operator -= (const Integer& rhs) {
             Integer<T,C> output("0");
@@ -705,6 +725,9 @@ class Integer {
 
         /**
          * <your documentation>
+         this method uses an array to store the mutliplications
+         of the lhs and 1-9. it then uses a combination of shift
+         lefts and added to simulate multiple digit multiplications
          */
         Integer& operator *= (const Integer& rhs) {
             Integer<T,C> output("0");
@@ -742,11 +765,14 @@ class Integer {
 
         /**
          * <your documentation>
+         this method uses a simple repeated subtraction to perform 
+         division. it simulates integer division
          * @throws invalid_argument if (rhs == 0)
          */
         Integer& operator /= (const Integer& rhs) {
             //Integer<T,C> quotient(0);
-            int count =0;
+            assert(!(rhs == 0));
+            int count =0; 
             //quotient._x.resize((*this)._x.size(),0);
             while(*this>=rhs)
             {
@@ -764,6 +790,9 @@ class Integer {
 
         /**
          * <your documentation>
+         using the same process as the division equal uses
+         this will calculate the mod by repeatedly subtracting
+         until the the integer is less that rhs
          * @throws invalid_argument if (rhs <= 0)
          */
         Integer& operator %= (const Integer& rhs) {
@@ -780,6 +809,7 @@ class Integer {
 
         /**
          * <your documentation>
+         uses the shift_left_digits function
          */
         Integer& operator <<= (int n) {
             Integer<T,C> output;
@@ -793,6 +823,7 @@ class Integer {
 
         /**
          * <your documentation>
+         uses the shift_right_digits function
          */
         Integer& operator >>= (int n) {
             Integer<T,C> output;
@@ -806,6 +837,8 @@ class Integer {
 
         /**
          * absolute value
+         this method will return the absolute value of the integer but 
+         creating a copy of the original disregarding the negative sign
          * <your documentation>
          */
         Integer& abs () {
@@ -824,16 +857,27 @@ class Integer {
         /**
          * power
          * <your documentation>
+         this function will perform powers using repeated mutliplication
          * @throws invalid_argument if ((this == 0) && (e == 0)) or (e < 0)
          */
-        Integer& pow (int e) {
+        Integer& pow (int e) 
+        {
             // <your code>
             Integer<T,C> output("1");
-            for(int i = 0;i<e;++i)
-            {
-                output *= *this; 
-            }
+            #ifdef optimize
+                for(int i = 0;i<e;++i)
+                {
+                    output *= *this; 
+                }
+            #endif
+            #ifndef optimize
+                for(int i = 0;i<e;++i)
+                {
+                    output *= *this; 
+                }
+            #endif
 
-            return *this = output;}};
+            return *this = output;}
+        };
 
 #endif // Integer_h

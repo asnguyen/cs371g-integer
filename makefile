@@ -1,18 +1,16 @@
 # http://stackoverflow.com/questions/31176997/what-does-clang-check-do-without-analyze-option
 
-FILES :=                              \
-    Integer.h                         \
-    Integer.log                       \
-    html                              \
-    RunInteger.c++                    \
-    RunInteger.out                    \
-    TestInteger.c++                   \
-    TestInteger.out
-
-# uncomment these:
-#    integer-tests/EID-RunInteger.out  \
-#    integer-tests/EID-TestInteger.c++ \
-#    integer-tests/EID-TestInteger.out \
+FILES :=                                 \
+    Integer.h                            \
+    Integer.log                          \
+    html                                 \
+    RunInteger.c++                       \
+    RunInteger.out                       \
+    TestInteger.c++                      \
+    TestInteger.out					     \
+    integer-tests/asn579-RunInteger.out  \
+    integer-tests/asn579-TestInteger.c++ \
+    integer-tests/asn579-TestInteger.out \
 
 CXXFLAGS := -pedantic -std=c++11 -Wall
 LDFLAGS  := -lgtest -lgtest_main -pthread
